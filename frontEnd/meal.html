@@ -1,0 +1,257 @@
+<style>
+    img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .img image:hover {
+        width: 400px;
+        height: 400px;
+    }
+    
+    .content {
+        max-width: 600px;
+        margin: 0 auto;
+        display: block;
+        padding: 20px;
+    }
+    
+    .invoice {
+        margin: 40px auto;
+        text-align: left;
+        width: 80%;
+    }
+    
+    .invoice td {
+        padding: 5px 0;
+    }
+    
+    .invoice .invoice-items {
+        width: 100%;
+    }
+    
+    .invoice .invoice-items td {
+        border-top: #eee 1px solid;
+    }
+    
+    .invoice .invoice-items .total td {
+        border-top: 2px solid #333;
+        border-bottom: 2px solid #333;
+        font-weight: 700;
+    }
+</style>
+
+<div class="container">
+    <div style="display:{{otherVisibility}}">
+        <!--<h1>{{meal.title}}</h1>-->
+        <div class="row" style="margin-top:15px">
+            <div class="col-md-4">
+                <div class="imgAbt">
+                    <img class="pull-left" ng-src="{{meal.imageID}}" alt="{{meal.title}}" height="330px" , width="400px" />
+                </div>
+            </div>
+            <div class="col-md-8">
+                <!-- product info -->
+
+                <table class="table table-hover">
+
+
+                    <tr>
+                        <td class="tdRight"><b>Name</b></td>
+                        <td class="tdCenter">{{meal.title}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tdRight"><b>Description</b></td>
+                        <td class="tdCenter">{{meal.description}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tdRight"><b>Address</b></td>
+                        <td class="tdCenter">{{meal.mealAddress}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tdRight"><b>Seller</b></td>
+                        <td class="tdCenter"><a href="#/profile/{{meal.seller._id}}">{{meal.seller.firstName}} {{meal.seller.lastName}}</a></td>
+                    </tr>
+                    <tr>
+                        <td class="tdRight"><b>Availability</b></td>
+                        <td class="tdCenter">{{meal.availableSpots}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tdRight"><b>Vegan</b></td>
+                        <td id="tdIsVegan"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdRight"><b>Vegetarian</b></td>
+                        <td id="tdIsVegetarian"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdRight"><b>Gluten Free</b></td>
+                        <td id="tdIsGlutenFree"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdRight"><b>Price</b></td>
+                        <td class="tdCenter"><b>{{meal.price | currency}}</b></td>
+                    </tr>
+                </table>
+            </div>
+            <button class="btn btn-block btn-success" style="margin-bottom:5px" <i class="icon-shopping-cart icon-white" data-toggle="modal" data-target="#myModal"> Buy Now
+            </button>
+
+            <button class="btn btn-block" onclick="window.location.href='/#/store'">
+                <i class="icon-chevron-left" /> BACK TO STORE
+            </button>
+        </div>
+        
+        <div id="googleMap" style="width:100%;height:300px;margin-top:30px;"></div>
+        
+    </div>
+
+    <!-- buttons -->
+    <div class="span4">
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <form ng-submit="buyMeal()">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Complete Order</h4>
+                        </div>
+                        <div class="modal-body">
+                            <!--<p>Some text in the modal.</p>-->
+                            <div class="container">
+
+                                <div class="row">
+                                    <div class="col-md-4 col-md-offset-1">
+
+                                        <br>
+
+                                        <div class="credit-card-div">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <label class="text-muted">Enter Quantity</label>
+                                                            <span><input ng-model="quantity" name="quantity"id="quantity" type="number" min="1" max="{{meal.availableSpots}}" class="form-control" required></span>
+                                                        </div>
+                                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                                            <label class="text-muted"> Credit Card Number</label>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <input type="number" min="1000000000000000" max="9999999999999999" class="form-control" value="1111222233334444" required/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row ">
+                                                        <div class="col-md-4 col-sm-4 col-xs-4">
+                                                            <label class="text-muted small-font"> Expiry Month</label>
+                                                            <input type="number" class="form-control" min="1" max="12" value="5" required/>
+                                                        </div>
+                                                        <div class="col-md-4 col-sm-4 col-xs-4">
+                                                            <label class="help-block text-muted small-font"> Expiry Year</label>
+                                                            <input type="number" class="form-control" min="2015" value="2018" required/>
+                                                        </div>
+                                                        <div class="col-md-4 col-sm-4 col-xs-4">
+                                                            <label class="help-block text-muted small-font"> CVV</label>
+                                                            <input type="number" class="form-control" value="555" required/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-top:10px">
+                                                        <div class="col-md-12">
+                                                            <label class="text-muted">Name on card</label>
+                                                            <input type="text" class="form-control" placeholder="John Doe" required/>
+                                                        </div>
+                                                        <div class="col-md-12" style="margin-top: 10px">
+                                                            <span><b>Total: {{meal.price * quantity | currency}}</b></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-top:10px">
+                                                        <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
+                                                            <input type="submit" class="btn btn-danger" data-dismiss="modal" value="CANCEL" />
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
+                                                            <input type="submit" class="btn btn-success btn-block" value="PAY NOW" />
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- CREDIT CARD DIV END -->
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+
+
+<!--PUT RECIEPT HTML CODE HERE-->
+<div id="receiptDiv" style="display:{{receiptVisibility}}">
+    <table class="body-wrap">
+        <tr>
+            <td>
+
+            </td>
+            <td class="container" width="600">
+                <div class="content">
+                    <table class="main" width="100%" height="50%" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td class="content-wrap aligncenter">
+                                <table width="100%" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td class="content-block">
+                                            <h2>Thank you for choosing MealShare.</h2>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="content-block">
+                                            <img src="{{meal.imageID}}" style="width:100%;max-width:100%">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h3>Your order for {{meal.title}} has been placed!</h3>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h1>Order total: {{quantity * meal.price | currency}}</h1>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-block" onclick="window.location.href='/#/store'">
+                                                <i class="icon-chevron-left" /> back to store
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+</div>
+
+<!--<script src="https://maps.googleapis.com/maps/api/js"></script>-->

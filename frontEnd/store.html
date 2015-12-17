@@ -1,0 +1,144 @@
+<div class=container>
+<br>
+
+<p align="right">
+    Search meals <input ng-model="search">
+</p>
+
+
+<div class="content">
+    
+    
+    <!---start-gallery----->
+    <div class="gallerys">
+        <!--<div class="wrap">-->
+            <!--<h3 align="center">Meals Available Near you</h3>-->
+            <!--<div class="gallery-grids" ng-repeat="meal in meals | filter:search">-->
+            <div ng-repeat="meal in meals" ng-if="$index%3==0" class="row">
+                <div>
+                <!--<div class="gallery-grid grid2">-->
+                    <!--col 1-->
+                    <div class="col-sm-4 well" style="border:5px solid white">
+                        <br>
+                        <a href="#/meals/{{meals[$index]._id}}" class="test">
+                            <img class="testimg" ng-src="{{meals[$index].imageID}}" alt="{{meals[$index].title}}"style="width:300px;height:200px"/>
+                            <span class="testa">{{getDistance(latitude,longitude,meals[$index].location[1],meals[$index].location[0]) | number:2}} mi</span>
+                        </a>
+                        <h4><a href="#/meals/{{meals[$index]._id}}"><b>{{meals[$index].title}}</b></a></h4>
+                        <h5><b>{{meals[$index].description}}</b></h5>
+                        
+                        <table class="table" style="width:100%;table-layout:fixed">
+                            <tr>
+                                <td><b>Location:</b></td>
+                                <td style="white-space:nowrap;width:50%;overflow:hidden">{{meals[$index].mealAddress}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Seller:</b></td>		
+                                <td><a href="#/profile/{{meals[$index].seller._id}}">{{meals[$index].seller.firstName}} {{meals[$index].seller.lastName}}</a></td>
+                            </tr>
+                            <tr>
+                                <td><b>Availability:</b></td>
+                                <td>{{meals[$index].availableSpots}}</td>		
+                            </tr>
+                            <tr>
+                                <td><b>Price:</b></td>
+                                <td>{{meals[$index].price | currency}}</td>		
+                            </tr>
+                        </table>
+                        <div class="gallery-button" type="submit"><a href="#/meals/{{meals[$index]._id}}">Buy Now</a></div>
+                    </div>
+                    
+                    <!--col 2-->
+                    <div class="col-sm-4 well" style="visibility:{{getVisibility($index+1)}};border:5px solid white">
+                        <br>
+                        <a href="#/meals/{{meals[$index+1]._id}}" class="test">
+                            <img class="testimg" ng-src="{{meals[$index+1].imageID}}" alt="{{meals[$index+1].title}}"style="width:300px;height:200px"/>
+                            <span class="testa">{{getDistance(latitude,longitude,meals[$index+1].location[1],meals[$index+1].location[0]) | number:2}} mi</span>
+                        </a>
+                        <h4><a href="#/meals/{{meals[$index+1]._id}}"><b>{{meals[$index+1].title}}</b></a></h4>
+                        <h5><b>{{meals[$index+1].description}}</b></h5>
+                        
+                        <table class="table" style="width:100%;table-layout:fixed">
+                            <tr>
+                                <td><b>Location:</b></td>
+                                <td style="white-space:nowrap;width:50%;overflow:hidden">{{meals[$index+1].mealAddress}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Seller:</b></td>		
+                                <td><a href="#/profile/{{meals[$index+1].seller._id}}">{{meals[$index+1].seller.firstName}} {{meals[$index+1].seller.lastName}}</a></td>
+                            </tr>
+                            <tr>
+                                <td><b>Availability:</b></td>
+                                <td>{{meals[$index+1].availableSpots}}</td>		
+                            </tr>
+                            <tr>
+                                <td><b>Price:</b></td>
+                                <td>{{meals[$index+1].price | currency}}</td>		
+                            </tr>
+                        </table>
+                        <div class="gallery-button" type="submit"><a href="#/meals/{{meals[$index+1]._id}}">Buy Now</a></div>
+                    </div>
+                    
+                    <!--col 3-->
+                    <div class="col-sm-4 well" style="visibility:{{getVisibility($index+2)}};border:5px solid white">
+                        <br>
+                        <a href="#/meals/{{meals[$index+2]._id}}" class="test">
+                            <img class="testimg" ng-src="{{meals[$index+2].imageID}}" alt="{{meals[$index+2].title}}"style="width:300px;height:200px"/>
+                            <span class="testa">{{getDistance(latitude,longitude,meals[$index+2].location[1],meals[$index+2].location[0]) | number:2}} mi</span>
+                        </a>
+                        <h4><a href="#/meals/{{meals[$index+2]._id}}"><b>{{meals[$index+2].title}}</b></a></h4>
+                        <h5><b>{{meals[$index+2].description}}</b></h5>
+                        
+                        <table class="table" style="width:100%;table-layout:fixed">
+                            <tr>
+                                <td><b>Location:</b></td>
+                                <td style="white-space:nowrap;width:50%;overflow:hidden">{{meals[$index+2].mealAddress}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Seller:</b></td>		
+                                <td><a href="#/profile/{{meals[$index+2].seller._id}}">{{meals[$index+2].seller.firstName}} {{meals[$index+2].seller.lastName}}</a></td>
+                            </tr>
+                            <tr>
+                                <td><b>Availability:</b></td>
+                                <td>{{meals[$index+2].availableSpots}}</td>		
+                            </tr>
+                            <tr>
+                                <td><b>Price:</b></td>
+                                <td>{{meals[$index+2].price | currency}}</td>		
+                            </tr>
+                        </table>
+                        <div class="gallery-button" type="submit"><a href="#/meals/{{meals[$index+2]._id}}">Buy Now</a></div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+
+
+<!--<table class="table table-bordered">
+   <tr ng-repeat="meal in meals | filter:search" >
+
+        <td class="tdCenter" align="center"><div class="img-wrapper">
+        <img ng-src="{{meal.imageID}}" alt="{{meal.title}}"style="width:300px;height:200px"  class="img-rounded">
+        </div>
+        </td>
+
+        <td>
+            <a href="#/meals/{{meal._id}}"><b>{{meal.title}}</b></a><br />
+            <b>Description:</b> {{meal.description}}<br>
+            <b>Location:</b> {{meal.mealAddress}}<br>
+            <b>Price:</b> {{meal.price | currency}}<br>
+            <b>Seller:</b> <a href="#/profile/{{meal.seller._id}}">{{meal.seller.firstName}} {{meal.seller.lastName}}</a><br>
+            <b>Availability:</b> {{meal.availableSpots}}<br>
+            <a href="#/meals/{{meal._id}}">
+                <button type="submit" class="btn btn-primary lg">Buy Now</button>
+            </a>
+        </td>
+
+           </tr>
+           
+</table>-->
+</div>
+

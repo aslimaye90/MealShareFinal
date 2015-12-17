@@ -1,0 +1,35 @@
+
+		 <!---start-content---->
+		 <div class="content">
+		 	<!---start-gallery----->
+		 	<div class="gallerys">
+		 		<div class="wrap">
+					<h3>Meals Available</h3>
+					<div class="gallery-grids">
+						<div ng-repeat="showmeal in showmeals">
+						<div class="gallery-grid  ">
+
+							<a href="#"><img  src="images/{{showmeal.image}}" alt="" style="width:200px;height:200px " class="img-rounded">
+								<span>{{showmeal.price}}</span>
+							</a>
+							<h4>{{showmeal.mealname}} </h4>
+							<p>{{showmeal.description}}</p>
+							<div class="gallery-button"><a href="#/mealdetail">Buy Now</a></div>
+						</div>
+						</div>
+
+					</div>
+				    <div class="clear"> </div>
+				    <div class="projects-bottom-pagination">
+						<ul>
+							<li class="active"><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+						</ul>
+					</div>
+				</div>
+				</div>
+				</div>
+
+		 	<!---End-gallery----->
+		 <!---End-content---->
+

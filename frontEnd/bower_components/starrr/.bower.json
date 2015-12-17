@@ -1,0 +1,30 @@
+{
+  "name": "starrr",
+  "version": "0.2.0",
+  "authors": [
+    "ajb <adam@dobt.co>"
+  ],
+  "description": "1-5 star rating with jQuery.",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "main": [
+    "starrr.coffee",
+    "starrr.scss"
+  ],
+  "dependencies": {},
+  "homepage": "https://github.com/dobtco/starrr",
+  "_release": "0.2.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.2.0",
+    "commit": "7692c52932c115d027e2ef18abaa2435aa4929ca"
+  },
+  "_source": "git://github.com/dobtco/starrr.git",
+  "_target": "~0.2.0",
+  "_originalSource": "starrr",
+  "_direct": true
+}

@@ -1,0 +1,260 @@
+<style>
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.img image:hover{
+ width:400px;
+ height:400px;
+    
+}
+ .content {
+        max-width: 600px;
+        margin: 0 auto;
+        display: block;
+        padding: 20px;
+    }
+ .invoice {
+        margin: 40px auto;
+        text-align: left;
+        width: 80%;
+    }
+    .invoice td {
+        padding: 5px 0;
+    }
+    .invoice .invoice-items {
+        width: 100%;
+    }
+    .invoice .invoice-items td {
+        border-top: #eee 1px solid;
+    }
+    .invoice .invoice-items .total td {
+        border-top: 2px solid #333;
+        border-bottom: 2px solid #333;
+        font-weight: 700;
+    }
+</style>
+
+<div class= container style="display:{{otherVisibility}}">
+<br>
+<p class="text-info">
+    <div>
+        <img class="image" ng-src="{{foodbank.photoUrl}}" alt="{{foodbank.name}}"  height="200px", width="300px"/>
+    </div>
+</p>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span8">
+
+            <!-- product info -->
+            <table class="table table-striped">
+
+                <!--<tr class="well">-->
+                <!--    <td class="tdRight" colspan="3" >-->
+                <!--    </td>-->
+                <!--</tr>-->
+
+
+                <tr>
+                    <td class="tdRight"><b>Name</b></td>
+                    <td class="tdCenter"><a href="{{foodbank.websiteUrl}}">{{foodbank.name}}</a></td>
+                </tr>
+                <tr>
+                    <td class="tdRight"><b>Headline</b></td>
+                    <td class="tdCenter">{{foodbank.headline}}</td>
+                </tr>
+                <tr>
+                    <td class="tdRight"><b>Pickup</b></td>
+                    <td id="tdIsPickUpAvailable"></td>
+                </tr>
+                <tr>
+                    <td class="tdRight"><b>Contact Number</b></td>
+                    <td class="tdCenter">{{foodbank.contactNumber}}</td>
+                </tr>
+                <tr>
+                    <td class="tdRight"><b>Address</b></td>
+                    <td class="tdCenter">{{foodbank.address}}</td>
+                </tr>
+                <tr>
+                    <td class="tdRight"><b>Website</b></td>
+                    <td class="tdCenter"><a href="{{foodbank.websiteUrl}}">{{foodbank.websiteUrl}}</a></td>
+                </tr>
+                <tr>
+                    <td class="tdRight"><b>Average Rating</b></td>
+                    <td class="tdCenter"><b>{{foodbank.averageRating | number:2}}</b></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center"><b>Accepted Items</b></td>
+                </tr>
+                <tr>
+                    <td class="tdRight"><b>Canned Foods</b></td>
+                    <td id="tdIsCannedFood"></td>
+                </tr>
+                <tr>
+                    <td class="tdRight"><b>Farm Produce</b></td>
+                    <td id="tdIsFarmProduce"></td>
+                </tr>
+                <tr>
+                    <td class="tdRight"><b>Prepared Food</b></td>
+                    <td id="tdIsPreparedFood"></td>
+                </tr>
+                <tr>
+                    <td class="tdRight"><b>Grocery</b></td>
+                    <td id="tdIsGrocery"></td>
+                </tr>
+                <tr>
+                    <td class="tdRight"><b>other</b></td>
+                    <td>{{foodbank.acceptedItems.other}}</td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center"><b>Hours of Operation</b></td>
+                </tr>
+                <tr>
+                    <td class="tdRight"><b>Opens at</b></td>
+                    <td>{{foodbank.hoursOfOperation.start | date:'shortTime':'UTC'}}</td>
+                </tr>
+                <tr>
+                    <td class="tdRight"><b>Closes at</b></td>
+                    <td>{{foodbank.hoursOfOperation.end | date:'shortTime':'UTC'}}</td>
+                </tr>
+                <tr>
+                    <td class="tdRight"><b>Days</b></td>
+                    <td>{{foodbank.hoursOfOperation.days[0]}} - {{foodbank.hoursOfOperation.days[foodbank.hoursOfOperation.days.length-1]}}</td>
+                </tr>
+
+
+                <!--<tr class="well">-->
+                <!--    <td class="tdRight" colspan="3" >-->
+                <!--    </td>-->
+                <!--</tr>-->
+
+            </table>
+        </div>
+
+        <!-- buttons -->
+        <div class="span4">
+            <button
+                class="btn btn-block btn-success" style="margin-bottom:5px"
+                <i class="icon-shopping-cart icon-white"  data-toggle="modal" data-target="#myModal"> Donate Now
+            </button>
+            
+             <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <form ng-submit="sendMessage()">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Contact {{foodbank.name}}</h4>
+                </div>
+                <div class="modal-body">
+                    <!--<p>Some text in the modal.</p>-->
+                    <div class="container">
+                        
+                        <div class="row">
+                            <div class="col-md-4 col-md-offset-1">
+                                
+                                 <br>
+                                 
+                                <div class="credit-card-div">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+
+                                            
+                                            
+                                            <div class="row" style="margin-top:10px">
+                                                <div class="col-md-12">
+                                                    <label class="text-muted">Message for {{foodbank.name}}</label>
+                                                    <textarea rows="4" style="width:100%" required>I would love to donate a box of candy!</textarea>
+                                                    <!--<input type="text" class="form-control" placeholder="John Doe" required/>-->
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-top:10px">
+                                                <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
+                                                    <input type="submit" class="btn btn-danger" data-dismiss="modal" value="CANCEL" />
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
+                                                    <input type="submit" class="btn btn-success btn-block" value="SEND" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- CREDIT CARD DIV END -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        </form>
+    </div>
+
+</div>
+
+            <button
+                    class="btn btn-block"
+                    onclick="window.location.href='/#/donate'">
+                <i class="icon-chevron-left" /> BACK TO FOOD BANKS
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<!--PUT RECIEPT HTML CODE HERE-->
+<div id="receiptDiv" style="display:{{receiptVisibility}}">
+<table class="body-wrap">
+    <tr>
+        <td>
+
+        </td>
+        <td class="container" width="600">
+            <div class="content">
+                <table class="main" width="100%" height="50%" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="content-wrap aligncenter">
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td class="content-block">
+                                        <h2>Thank you for choosing MealShare.</h2>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="content-block">
+                                        <img src="{{foodbank.photoUrl}}" style="width:100%;max-width:100%">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h3>Your message has been delivered to {{foodbank.name}}.</h3><br>
+                                        <h3>{{foodbank.name}} will contact you shortly.</h3>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button class="btn btn-block"
+                                                onclick="window.location.href='/#/donate'">
+                                            <i class="icon-chevron-left" /> BACK TO FOOD BANKS
+                                        </button>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+              </div>
+        </td>
+        <td></td>
+    </tr>
+</table>
+</div>

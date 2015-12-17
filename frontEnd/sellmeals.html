@@ -1,0 +1,151 @@
+<div class =container>
+<!---start-content---->
+<div class="content" ng-controller="sellMealsCtrl">
+    <!---start-contact---->
+    <div class="contact">
+        <div class="wrap">
+            <div class="section group">
+                <div class="col span_1_of_3">
+                    <div class="form-group">
+                        <label for="inputMealImage">Upload Meal Image</label>
+                        <input type="file" id="inputMealImage" required multiple>
+                    </div>
+                </div>
+
+
+                <div class="col span_2_of_3">
+                    <div class="contact-form">
+                        <h3>Please enter your meal details</h3>
+                        <form>
+                            <div>
+                                <span><label>MEAL NAME</label></span>
+                                <span><input name="title" id="title" ng-model="title" type="text" class="textbox" required></span>
+                            </div>
+                            <div>
+                                <span><label>MEAL DESCRIPTION</label></span>
+                                <span><input name="mealDescription" ng-model="description" id= "description "type="text" class="textbox"></span>
+                            </div>
+
+                            <div>
+                                <span><label>NUMBER OF MEALS</label></span>
+                                <span><input name="availableSpots"ng-model="availableSpots"id="availableSpots" type="number" min="1" class="textbox" required></span>
+                            </div>
+                            
+                            <div>
+                                <span><label>AVAILABLE FROM</label></span>
+                                <span><input ng-model="startDateTime" type="datetime-local" required></span>
+                            </div>
+                            
+                            <div>
+                                <span><label>AVAILABLE UNTIL</label></span>
+                                <span><input ng-model="endDateTime" type="datetime-local" required></span>
+                            </div>
+
+
+                            <!--<div>
+                                <table class="table table-hover">
+                                    <tr><td>
+                                         <span><label> AVAILABLE FROM</label></span>
+                                         </td>
+                                        <td>
+                                            <span><input name="startDate" ng-model="startDate"id="startDate" type="date" class="textbox" required></span>
+                                        </td>
+                                        <td>
+                                         <span><input name="startTime" ng-model="startTime"id="startTime" type="time" class="textbox" required></span>
+                                        </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td>
+                                            <span><label>AVAILABLE TO</label></span> 
+                                            </td>
+                                        <td>
+                                            <span><input name="endDate" ng-model="endDate"id="endDate" type="date" class="textbox" required></span>
+                                        </td>
+                                        <td>
+                                         <span><input name="endTime" ng-model="endTime"id="endTime" type="time" class="textbox" required></span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>-->
+
+                            <div>
+                                <span><label>ADDRESS</label></span>
+                                <span><input id ="address" type="text" class="textbox" required></span>
+                            </div>
+                            <div>
+                                <span><label>DELIVERY METHOD</label></span>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox"ng-model="isToGo" id=" togo" value="togo"> Take Away
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="dinein"ng-model="isEatHere" value="dinein"> Dine In
+                                </label>
+                                </div>
+
+                            <div>
+                                <span><label>FOOD CATEGORY</label></span>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" ng-model="isVegan"id="vegan" value="vegan"> Vegan
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox"ng-model="isVegetarian" id="vegetarian" value="vegetarian"> Vegetarian
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox"ng-model="isGlutenFree" id="glutenfree" value="glutenfree">Gluten Free
+                                </label>
+                        
+                                </div>
+
+
+                            <div>
+                                <span><label>ALLERGEN INFO</label></span>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" ng-model="isPeanut" id="inlineCheckbox1" value="Peanuts"> Peanuts
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" ng-model="isTreenut" id="inlineCheckbox2" value="Treenuts"> Treenuts
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="inlineCheckbox3"ng-model="isEgg" value="Egg"> Egg
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="inlineCheckbox4"ng-model="isWheat" value="Wheat"> Wheat
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="inlineCheckbox5" ng-model="isMilk" value="Milk"> Milk
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="inlineCheckbox6" ng-model="isFish" value="Fish"> Fish
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="inlineCheckbox7"ng-model="isSoy" value="Soy"> Soy
+                                </label>
+                               
+                            </div>
+
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <label class="sr-only" for="price">Price per meal(in dollars)</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">Price($)</div>
+                                        <input type="numbe" class="form-control"ng-model="price" id="price"name="price" placeholder=" Quote your price" required>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div>
+                                <button type="button" ng-click="postMeal()" class="mybutton">SUBMIT</button>
+                                <button type="button" class="mybutton">CANCEL</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---End-contact---->
+    <!---End-content---->
+</div>
+</div>
